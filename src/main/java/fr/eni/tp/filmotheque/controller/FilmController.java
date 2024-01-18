@@ -1,11 +1,19 @@
 package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
+import fr.eni.tp.filmotheque.bo.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Controller
+@RequestMapping("/films")
 public class FilmController
 {
 	private FilmService filmService;
@@ -16,13 +24,21 @@ public class FilmController
 		this.filmService = filmService;
 	}
 
-	public void afficherUnFilm(long id)
+	@GetMapping("/{id}")
+	public String afficherUnFilm(@PathVariable long id, Model model)
 	{
-		System.out.println(filmService.consulterFilmParId(id));
+		Film film = filmService.consulterFilmParId(id);
+		model.addAttribute("film", film);
+
+		return "view-film-detail";
 	}
 
-	public void afficherFilms()
+	@GetMapping
+	public String afficherFilms(Model model)
 	{
-		filmService.consulterFilms().forEach(System.out::println);
+		List<Film> films = filmService.consulterFilms();
+		model.addAttribute("films", films);
+
+		return "view-films";
 	}
 }
