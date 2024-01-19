@@ -1,0 +1,35 @@
+<section data-th-fragment="film-detail(film)">
+	<h1>Détail du film</h1>
+	<ul class="flex-outer">
+		<li>
+			<label for="inputGenre">Genre :</label>
+			<input type="text" name="genre" id="inputGenre" data-th-value="${film.genre.titre}" required />
+		</li>
+		<li>
+			<label for="inputAnnee">Année :</label>
+			<input type="text" name="annee" id="inputAnnee" data-th-value="${film.annee}" required />
+		</li>
+		<li>
+			<label for="inputTitre">Titre :</label>
+			<input type="text" name="titre" id="inputTitre" data-th-value="${film.titre}" required />
+		</li>
+		<li>
+			<label for="inputRealisateur">Réalisateur :</label>
+			<input type="text" name="realisateur" id="inputRealisateur" data-th-value="${film.realisateur.prenom + ' ' + film.realisateur.nom}" required />
+		</li>
+		<li>
+			<label for="inputDuree">Durée :</label>
+			<input type="text" name="duree" id="inputDuree" data-th-value="${film.duree}" required />
+		</li>
+		<li>
+			<label for="inputActeurs">Acteurs :</label>
+			<select name="acteurs" id="inputActeurs" data-th-size="5" required>
+				<option data-th-each="acteur : ${film.acteurs}" data-th-text="${acteur.prenom} + ' ' + ${acteur.nom}"></option>
+			</select>
+		</li>
+		<li>
+			<label for="inputSynopsis">Synopsis :</label>
+			<textarea name="synopsis" id="inputSynopsis" data-th-text="${film.synopsis}" required></textarea>
+		</li>
+	</ul>
+</section>

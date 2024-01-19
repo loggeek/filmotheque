@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr" data-th-fragment="layout(title, content, meta)">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/general.css"/>
+	<th-block data-th-replace="${meta}"></th-block>
+	<title data-th-replace="${title} ?: 'TP ENI'"></title>
+</head>
+<body>
+	<header data-th-replace="~{fragments/f-header}"></header>
+	<main data-th-replace="${content}"></main>
+	<footer data-th-replace="~{fragments/f-footer}"></footer>
+</body>
+</html>

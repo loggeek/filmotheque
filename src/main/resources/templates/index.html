@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="/css/general.css"/>
-        <title>TP ENI</title>
-    </head>
-    <body>
-        <header th:utext="~{include/navbar.html}"></header>
-        <main class="center-main">
-            <section class="center-section">
-                <h1 style="text-align:center">Bienvenue à la Filmothèque de l'ENI!</h1>
-            </section>
-        </main>
-    </body>
+<html lang="fr" data-th-replace="~{layouts/layout :: layout(~{::title}, ~{::main}, ~{})}">
+<head>
+	<title>TP ENI</title>
+</head>
+<body>
+	<main class="center-main">
+		<section class="center-section">
+			<h1 style="text-align:center">Bienvenue à la Filmothèque de l'ENI!</h1>
+		</section>
+	</main>
+</body>
 </html>
