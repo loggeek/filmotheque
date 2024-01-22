@@ -32,7 +32,7 @@ public class FilmServiceBouchon implements FilmService
 
 	@Override
 	public Film consulterFilmParId(long id) {
-		return lstFilms.stream().filter(item -> item.getId() == id).findAny().orElse(null);
+		return lstFilms.stream().filter(item -> item.getId() == id).findAny().orElseThrow();
 	}
 
 	@Override
