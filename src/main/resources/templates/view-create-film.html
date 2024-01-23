@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr" data-th-replace="~{layouts/layout :: layout(~{::title}, ~{::main}, ~{::link})}">
+<head>
+	<title>TP ENI</title>
+	<link rel="stylesheet" type="text/css" href="/css/demo-form.css"/>
+</head>
+<body>
+	<main class="center-main">
+		<section class="center-section">
+			<h1 style="text-align:center">Création d'un film (en travaux)</h1>
+			<ul class="flex-outer">
+				<li>
+					<label for="inputGenres">Genre :</label>
+					<select name="genres" id="inputGenres" required>
+						<option data-th-each="genre : ${s_genres}" data-th-text="${genre.titre}"></option>
+					</select>
+				</li>
+			</ul>
+		</section>
+	</main>
+</body>
+</html>

@@ -31,4 +31,10 @@ public class Membre extends Personne
 		this.pseudo = pseudo;
 		this.admin = admin;
 	}
+
+	public Membre(String pseudo, boolean admin)
+	{
+		this.pseudo = pseudo;
+		this.admin = admin;
+	}
 }

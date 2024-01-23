@@ -2,13 +2,13 @@ package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
 import fr.eni.tp.filmotheque.bo.Film;
+import fr.eni.tp.filmotheque.bo.Genre;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -17,6 +17,7 @@ import java.util.NoSuchElementException;
 
 @Controller
 @RequestMapping("/films")
+@SessionAttributes({"s_genres", "s_membre"})
 public class FilmController
 {
 	private final FilmService filmService;
@@ -25,6 +26,19 @@ public class FilmController
 	public FilmController(FilmService filmService)
 	{
 		this.filmService = filmService;
+	}
+
+	@ModelAttribute("s_genres")
+	public List<Genre> chargerGenres()
+	{
+		LoggerFactory.getLogger(getClass()).info("Chargement des genres en session");
+		return filmService.consulterGenres();
+	}
+
+	@GetMapping("/new")
+	public String creerFilm()
+	{
+		return "view-create-film";
 	}
 
 	@GetMapping("/{id}")
