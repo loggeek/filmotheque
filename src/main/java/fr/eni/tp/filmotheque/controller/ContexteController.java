@@ -28,6 +28,7 @@ public class ContexteController
 	public String login(Model model)
 	{
 		List<Membre> membres = contexteService.getMembres();
+		membres.forEach(membre -> membre.setMotDePasse(null)); // hash later
 		model.addAttribute("membres", membres);
 
 		return "view-contexte";
@@ -36,14 +37,18 @@ public class ContexteController
 	@GetMapping("/login/{pseudo}")
 	public String login(Model model, @PathVariable String pseudo)
 	{
-		model.addAttribute("s_membre", contexteService.charger(pseudo));
+		Membre membre = contexteService.charger(pseudo);
+		membre.setMotDePasse(null); // hash later
+		model.addAttribute("s_membre", membre);
+
 		return "redirect:/films";
 	}
 
 	@GetMapping("/logout")
-	public String logout(SessionStatus sessionStatus) {
-		System.out.println("Déconnexion");
+	public String logout(SessionStatus sessionStatus)
+	{
 		sessionStatus.setComplete();
+
 		return "redirect:/films";
 	}
 }

@@ -24,7 +24,10 @@
 					<td data-th-text="${item.annee}"></td>
 					<td data-th-text="${item.titre}"></td>
 					<td data-th-text="${item.realisateur.prenom} + ' ' + ${item.realisateur.nom}"></td>
-					<td><a data-th-href="@{'/films/' + ${item.id}}">Détail</a></td>
+					<td>
+						<a data-th-href="@{'/films/' + ${item.id}}">Détail</a>
+						<a data-th-if="${s_membre}" data-th-href="@{'/avis/' + ${item.id}}">Avis</a>
+					</td>
 				</tr>
 				</tbody>
 			</table>

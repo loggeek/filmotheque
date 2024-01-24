@@ -4,11 +4,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 
 @Data
 @Component
 @EqualsAndHashCode(callSuper = true)
-public class Participant extends Personne
+public class Participant extends Personne implements Serializable
 {
 	public Participant()
 	{

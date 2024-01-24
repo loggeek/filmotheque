@@ -3,11 +3,13 @@ package fr.eni.tp.filmotheque.bo;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 
 @Data
 @Component
 @EqualsAndHashCode(of = "id")
-public abstract class Personne
+public abstract class Personne implements Serializable
 {
 	private long id;
 	private String nom;

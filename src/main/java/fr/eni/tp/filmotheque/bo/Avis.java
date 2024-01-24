@@ -5,11 +5,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Generated;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 
 @Data
 @Component
 @EqualsAndHashCode(of = "id")
-public class Avis
+public class Avis implements Serializable
 {
 	private long id;
 	private int note;

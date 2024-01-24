@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr" data-th-replace="~{layouts/layout :: layout(~{::title}, ~{::main}, ~{::link})}">
+<head>
+	<link rel="stylesheet" type="text/css" href="/css/demo-form.css"/>
+	<title>TP ENI</title>
+</head>
+<body>
+	<main>
+		<form method="post" data-th-action="@{'/avis/' + ${film.id}}">
+			<h1>Ajouter un avis au film <th-block data-th-text="${film.titre}"></th-block></h1>
+			<ul class="flex-outer">
+				<li>
+					<label for="inputNote">Note :</label>
+					<input type="number" min="1" max="10" name="note" id="inputNote" required />
+				</li>
+				<li>
+					<label for="inputCommentaire">Commentaire :</label>
+					<textarea name="commentaire" id="inputCommentaire" required></textarea>
+				</li>
+			</ul>
+			<button type="submit">Enregistrer</button>
+		</form>
+	</main>
+</body>
+</html>

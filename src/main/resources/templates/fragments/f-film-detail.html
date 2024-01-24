@@ -23,13 +23,19 @@
 		</li>
 		<li>
 			<label for="inputActeurs">Acteurs :</label>
-			<select name="acteurs" id="inputActeurs" data-th-size="5" required>
+			<select name="acteurs" id="inputActeurs" data-th-size="5" multiple required>
 				<option data-th-each="acteur : ${film.acteurs}" data-th-text="${acteur.prenom} + ' ' + ${acteur.nom}"></option>
 			</select>
 		</li>
 		<li>
 			<label for="inputSynopsis">Synopsis :</label>
 			<textarea name="synopsis" id="inputSynopsis" data-th-text="${film.synopsis}" required></textarea>
+		</li>
+		<li data-th-if="${avis}">
+			<label for="listeAvis">Synopsis :</label>
+			<ul id="listeAvis">
+				<li data-th-each="un_avis : ${avis}" data-th-text="${un_avis.membre.pseudo} + ' a mis ' + ${un_avis.note} + '/10: ' + ${un_avis.commentaire}"></li>
+			</ul>
 		</li>
 	</ul>
 </section>

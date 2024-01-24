@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Data
 @Component
 @EqualsAndHashCode(of = "id")
-public class Film
+public class Film implements Serializable
 {
 	private long id;
 	private String titre;

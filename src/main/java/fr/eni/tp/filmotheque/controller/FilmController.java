@@ -1,6 +1,7 @@
 package fr.eni.tp.filmotheque.controller;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
+import fr.eni.tp.filmotheque.bo.Avis;
 import fr.eni.tp.filmotheque.bo.Film;
 import fr.eni.tp.filmotheque.bo.Genre;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,6 @@ public class FilmController
 	@ModelAttribute("s_genres")
 	public List<Genre> chargerGenres()
 	{
-		LoggerFactory.getLogger(getClass()).info("Chargement des genres en session");
 		return filmService.consulterGenres();
 	}
 
@@ -51,6 +51,11 @@ public class FilmController
 		catch (NoSuchElementException e)
 		{
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+
+		List<Avis> avis = filmService.consulterAvis(id);
+		if (! avis.isEmpty()) {
+			model.addAttribute("avis", avis);
 		}
 
 		return "view-film-detail";

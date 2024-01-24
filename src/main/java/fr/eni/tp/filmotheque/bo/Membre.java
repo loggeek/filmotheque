@@ -3,11 +3,13 @@ package fr.eni.tp.filmotheque.bo;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 
 @Data
 @Component
 @EqualsAndHashCode(callSuper = true)
-public class Membre extends Personne
+public class Membre extends Personne implements Serializable
 {
 	private String pseudo;
 	@ToString.Exclude
