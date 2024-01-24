@@ -6,7 +6,9 @@
 	<nav>
 		<ul>
 			<li><a href="/films">Films</a></li>
-			<li><a href="/films/new">Créer</a></li>
+			<th-block data-th-if="${s_membre}">
+				<li data-th-if="${s_membre.admin}"><a href="/films/new">Créer</a></li>
+			</th-block>
 			<li><a href="/ctx" style="color:#008080" data-th-text="${s_membre}? ${s_membre.prenom} + ' ' + ${s_membre.nom} : 'Connexion'"></a></li>
 		</ul>
 	</nav>

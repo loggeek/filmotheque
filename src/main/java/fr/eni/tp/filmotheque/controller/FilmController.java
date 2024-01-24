@@ -4,7 +4,7 @@ import fr.eni.tp.filmotheque.bll.FilmService;
 import fr.eni.tp.filmotheque.bo.Avis;
 import fr.eni.tp.filmotheque.bo.Film;
 import fr.eni.tp.filmotheque.bo.Genre;
-import org.slf4j.LoggerFactory;
+import fr.eni.tp.filmotheque.bo.Membre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 
 @Controller
@@ -36,9 +37,35 @@ public class FilmController
 	}
 
 	@GetMapping("/new")
-	public String creerFilm()
+	public String creerFilm(Model model)
 	{
+		if (! model.containsAttribute("s_membre")) {
+			return "redirect:/films";
+		}
+
+		if (! ((Membre) Objects.requireNonNull(model.getAttribute("s_membre"))).isAdmin()) {
+			return "redirect:/films";
+		}
+
+		model.addAttribute("film", new Film());
+		model.addAttribute("participants", filmService.consulterParticipants());
+
 		return "view-create-film";
+	}
+
+	@PostMapping("/new")
+	public String ajouterFilm(@ModelAttribute Film film, Model model)
+	{
+		if (! model.containsAttribute("s_membre")) {
+			return "redirect:/films";
+		}
+		if (! ((Membre) Objects.requireNonNull(model.getAttribute("s_membre"))).isAdmin()) {
+			return "redirect:/films";
+		}
+
+		filmService.creerFilm(film);
+
+		return "redirect:/films";
 	}
 
 	@GetMapping("/{id}")

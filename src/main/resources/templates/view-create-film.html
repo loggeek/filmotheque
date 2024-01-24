@@ -5,18 +5,49 @@
 	<link rel="stylesheet" type="text/css" href="/css/demo-form.css"/>
 </head>
 <body>
-	<main class="center-main">
-		<section class="center-section">
-			<h1 style="text-align:center">Création d'un film (en travaux)</h1>
+	<main>
+		<form data-th-object="${film}" data-th-action="@{'/films/new'}" method="post">
+			<h1>Créer un film</h1>
 			<ul class="flex-outer">
 				<li>
-					<label for="inputGenres">Genre :</label>
-					<select name="genres" id="inputGenres" required>
-						<option data-th-each="genre : ${s_genres}" data-th-text="${genre.titre}"></option>
+					<label for="inputGenre">Genre :</label>
+					<select name="genre" id="inputGenre" required>
+						<option data-th-each="genre : ${s_genres}" data-th-text="${genre.titre}">
 					</select>
 				</li>
+				<li>
+					<label for="inputAnnee">Année :</label>
+					<input type="number" name="annee" id="inputAnnee" required />
+				</li>
+				<li>
+					<label for="inputTitre">Titre :</label>
+					<input type="text" name="titre" id="inputTitre" required />
+				</li>
+				<li>
+					<label for="inputRealisateur">Réalisateur :</label>
+					<select name="realisateur" id="inputRealisateur" required>
+						<option data-th-each="participant : ${participants}" data-th-text="${participant.prenom} + ' ' + ${participant.nom}">
+					</select>
+				</li>
+				<li>
+					<label for="inputDuree">Durée :</label>
+					<input type="number" name="duree" id="inputDuree" required />
+				</li>
+				<li>
+					<label for="inputActeurs">Acteurs :</label>
+					<select name="acteurs" id="inputActeurs" data-th-size="5" multiple required>
+						<option data-th-each="participant : ${participants}" data-th-text="${participant.prenom} + ' ' + ${participant.nom}">
+					</select>
+				</li>
+				<li>
+					<label for="inputSynopsis">Synopsis :</label>
+					<textarea name="synopsis" id="inputSynopsis" required></textarea>
+				</li>
+				<li>
+					<button type="submit">Enregistrer</button>
+				</li>
 			</ul>
-		</section>
+		</form>
 	</main>
 </body>
 </html>

@@ -40,9 +40,6 @@ public class AvisController
 			return "redirect:/films";
 		}
 
-		System.out.println(note);
-		System.out.println(commentaire);
-
 		filmService.publierAvis(
 			new Avis(note, commentaire, (Membre) model.getAttribute("s_membre")),
 			id

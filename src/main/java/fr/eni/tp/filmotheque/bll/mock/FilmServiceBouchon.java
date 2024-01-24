@@ -37,10 +37,6 @@ public class FilmServiceBouchon implements FilmService {
 		return lstFilms;
 	}
 
-	/**
-	 * @return film si id correspond
-	 * @return null si inconnu
-	 */
 	@Override
 	public Film consulterFilmParId(long id) {
 		return lstFilms.stream().filter(item -> item.getId() == id).findAny().orElse(null);
@@ -61,10 +57,6 @@ public class FilmServiceBouchon implements FilmService {
 		return lstGenres.stream().filter(item -> item.getId() == id).findAny().orElse(null);
 	}
 
-	/**
-	 * @return participant si id correspond
-	 * @return null si inconnu
-	 */
 	@Override
 	public Participant consulterParticipantParId(long id) {
 		return lstParticipants.stream().filter(item -> item.getId() == id).findAny().orElse(null);
