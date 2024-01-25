@@ -1,15 +1,17 @@
 <header data-th-fragment="f-header">
 	<h1 id="nav-title">
 		<img src="/img/logo.png" alt="Logo Filmothèque" width="64px"/>
-		<a href="/">Filmothèque</a>
+		<a href="/" data-th-text="#{app}"></a>
+		<a href="?lang=fr"><img src="/img/French.webp" alt="Français" height="16px" /></a>
+		<a href="?lang=en"><img src="/img/English.webp" alt="English" height="16px" /></a>
 	</h1>
 	<nav>
 		<ul>
-			<li><a href="/films">Films</a></li>
+			<li><a href="/films" data-th-text="#{f-header.films}"></a></li>
 			<th-block data-th-if="${s_membre}">
-				<li data-th-if="${s_membre.admin}"><a href="/films/new">Créer</a></li>
+				<li data-th-if="${s_membre.admin}"><a href="/films/new" data-th-text="#{f-header.creer}"></a></li>
 			</th-block>
-			<li><a href="/ctx" style="color:#008080" data-th-text="${s_membre}? ${s_membre.prenom} + ' ' + ${s_membre.nom} : 'Connexion'"></a></li>
+			<li><a href="/ctx" style="color:#008080" data-th-text="${s_membre}? ${s_membre.prenom} + ' ' + ${s_membre.nom} : #{f-header.contexte}"></a></li>
 		</ul>
 	</nav>
 </header>

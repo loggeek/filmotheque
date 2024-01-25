@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr" data-th-replace="~{layouts/layout :: layout(~{::title}, ~{::main}, ~{::link})}">
 <head>
-	<title>TP ENI</title>
+	<title data-th-text="#{view-contexte}"></title>
 	<link rel="stylesheet" type="text/css" href="/css/tp-contexte.css" />
 </head>
 <body>
 	<main class="center-main">
 		<section class="center-section">
-			<h1>Contexte</h1>
+			<h1 data-th-text="#{view-contexte.heading}"></h1>
 			<th-block data-th-unless="${s_membre}" data-th-each="membre : ${membres}">
 				<a data-th-href="'/ctx/login/' + ${membre.pseudo}" data-th-text="${membre.prenom} + ' ' + ${membre.nom} + (${membre.admin} ? ' [ADMIN]' : '')"></a>
 			</th-block>
-			<a data-th-if="${s_membre}" href="/ctx/logout">Déconnexion</a>
+			<a data-th-if="${s_membre}" href="/ctx/logout" data-th-text="#{view-contexte.deconnexion}"></a>
 		</section>
 	</main>
 </body>

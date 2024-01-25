@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr" data-th-replace="~{layouts/layout :: layout(~{::title}, ~{::main}, ~{})}">
 <head>
-	<title>TP ENI</title>
+	<title data-th-text="#{index}"></title>
 </head>
 <body>
 	<main class="center-main">
 		<section class="center-section">
-			<h1 style="text-align:center">Bienvenue à la Filmothèque de l'ENI!</h1>
+			<h1 style="text-align:center" data-th-text="#{index.heading}"></h1>
 		</section>
 	</main>
 </body>

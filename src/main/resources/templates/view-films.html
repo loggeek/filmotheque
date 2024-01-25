@@ -2,20 +2,20 @@
 <html lang="fr" data-th-replace="~{layouts/layout :: layout(~{::title}, ~{::main}, ~{::link})}">
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/demo-table.css"/>
-	<title>TP ENI</title>
+	<title data-th-text="#{view-films}"></title>
 </head>
 <body>
 	<main>
 		<section>
-			<h1>Les films de l'ENI</h1>
+			<h1 data-th-text="#{view-films.heading}"></h1>
 			<table>
 				<thead>
 				<tr>
-					<th>Genre</th>
-					<th>Année</th>
-					<th>Titre</th>
-					<th>Réalisateur</th>
-					<th>Action</th>
+					<th data-th-text="#{view-films.genre}"></th>
+					<th data-th-text="#{view-films.annee}"></th>
+					<th data-th-text="#{view-films.titre}"></th>
+					<th data-th-text="#{view-films.realisateur}"></th>
+					<th data-th-text="#{view-films.actions}"></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -25,8 +25,8 @@
 					<td data-th-text="${item.titre}"></td>
 					<td data-th-text="${item.realisateur.prenom} + ' ' + ${item.realisateur.nom}"></td>
 					<td>
-						<a data-th-href="@{'/films/' + ${item.id}}">Détail</a>
-						<a data-th-if="${s_membre}" data-th-href="@{'/avis/' + ${item.id}}">Avis</a>
+						<a data-th-href="@{'/films/' + ${item.id}}" data-th-text="#{view-films.actions.detail}"></a>
+						<a data-th-if="${s_membre}" data-th-href="@{'/avis/' + ${item.id}}" data-th-text="#{view-films.actions.avis}"></a>
 					</td>
 				</tr>
 				</tbody>

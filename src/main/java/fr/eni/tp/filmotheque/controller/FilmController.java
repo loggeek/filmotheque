@@ -93,7 +93,7 @@ public class FilmController
 			model.addAttribute("avis", avis);
 		}
 
-		return "view-film-detail";
+		return "view-detail-film";
 	}
 
 	@GetMapping

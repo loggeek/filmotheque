@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr" data-th-replace="~{layouts/layout :: layout(~{::title}, ~{::main}, ~{::link})}">
 <head>
-	<title>TP ENI</title>
+	<title data-th-text="#{view-create-film}"></title>
 	<link rel="stylesheet" type="text/css" href="/css/demo-form.css"/>
 </head>
 <body>
 	<main>
 		<form data-th-object="${film}" data-th-action="@{'/films/new'}" method="post">
-			<h1>Créer un film</h1>
+			<h1 data-th-text="#{view-create-film.heading}"></h1>
 			<div data-th-replace="~{fragments/f-champs-invalides}"></div>
 			<ul class="flex-outer">
 				<li>
-					<label for="inputGenre">Genre :</label>
+					<label for="inputGenre" data-th-text="#{view-description-film.genre}"></label>
 					<select name="genre" id="inputGenre" required>
 						<option data-th-each="genre : ${s_genres}" data-th-text="${genre.titre}">
 					</select>
 					<ul data-th-replace="~{fragments/f-champ-invalide :: f-champ-invalide('genre')}"></ul>
 				</li>
 				<li>
-					<label for="inputAnnee">Année :</label>
+					<label for="inputAnnee" data-th-text="#{view-description-film.annee}"></label>
 					<input type="number" name="annee" id="inputAnnee" required />
 					<ul data-th-replace="~{fragments/f-champ-invalide :: f-champ-invalide('annee')}"></ul>
 				</li>
 				<li>
-					<label for="inputTitre">Titre :</label>
+					<label for="inputTitre" data-th-text="#{view-description-film.titre}"></label>
 					<input type="text" name="titre" id="inputTitre" required />
 					<ul data-th-replace="~{fragments/f-champ-invalide :: f-champ-invalide('titre')}"></ul>
 				</li>
 				<li>
-					<label for="inputRealisateur">Réalisateur :</label>
+					<label for="inputRealisateur" data-th-text="#{view-description-film.realisateur}"></label>
 					<select name="realisateur" id="inputRealisateur" required>
 						<option data-th-each="participant : ${participants}" data-th-text="${participant.prenom} + ' ' + ${participant.nom}">
 					</select>
 					<ul data-th-replace="~{fragments/f-champ-invalide :: f-champ-invalide('realisateur')}"></ul>
 				</li>
 				<li>
-					<label for="inputDuree">Durée :</label>
+					<label for="inputDuree" data-th-text="#{view-description-film.duree}"></label>
 					<input type="number" name="duree" id="inputDuree" required />
 					<ul data-th-replace="~{fragments/f-champ-invalide :: f-champ-invalide('duree')}"></ul>
 				</li>
 				<li>
-					<label for="inputActeurs">Acteurs :</label>
+					<label for="inputActeurs" data-th-text="#{view-description-film.acteurs}"></label>
 					<select name="acteurs" id="inputActeurs" data-th-size="5" multiple required>
 						<option data-th-each="participant : ${participants}" data-th-text="${participant.prenom} + ' ' + ${participant.nom}">
 					</select>
 					<ul data-th-replace="~{fragments/f-champ-invalide :: f-champ-invalide('acteurs')}"></ul>
 				</li>
 				<li>
-					<label for="inputSynopsis">Synopsis :</label>
+					<label for="inputSynopsis" data-th-text="#{view-description-film.synopsis}"></label>
 					<textarea name="synopsis" id="inputSynopsis" required></textarea>
 					<ul data-th-replace="~{fragments/f-champ-invalide :: f-champ-invalide('synopsis')}"></ul>
 				</li>
 				<li>
-					<button type="submit">Enregistrer</button>
+					<button type="submit" data-th-text="#{view-create-film.enregistrer}"></button>
 				</li>
 			</ul>
 		</form>
