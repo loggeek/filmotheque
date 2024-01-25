@@ -1,0 +1,3 @@
+<ul data-th-fragment="f-champ-invalide(champ)" class="cards" data-th-if="${#fields.hasErrors(champ)}">
+	<li data-th-each="errorItem : ${#fields.errors(champ)}" data-th-text="${errorItem}"></li>
+</ul>

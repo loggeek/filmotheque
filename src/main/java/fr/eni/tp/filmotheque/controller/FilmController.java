@@ -5,10 +5,12 @@ import fr.eni.tp.filmotheque.bo.Avis;
 import fr.eni.tp.filmotheque.bo.Film;
 import fr.eni.tp.filmotheque.bo.Genre;
 import fr.eni.tp.filmotheque.bo.Membre;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -54,13 +56,19 @@ public class FilmController
 	}
 
 	@PostMapping("/new")
-	public String ajouterFilm(@ModelAttribute Film film, Model model)
+	public String ajouterFilm(@Valid @ModelAttribute Film film, BindingResult bindingResult, Model model)
 	{
 		if (! model.containsAttribute("s_membre")) {
 			return "redirect:/films";
 		}
 		if (! ((Membre) Objects.requireNonNull(model.getAttribute("s_membre"))).isAdmin()) {
 			return "redirect:/films";
+		}
+
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("participants", filmService.consulterParticipants());
+
+			return "view-create-film";
 		}
 
 		filmService.creerFilm(film);

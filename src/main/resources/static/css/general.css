@@ -67,3 +67,11 @@ main h1 {
 	margin: auto;
 	text-align: center;
 }
+
+.cards {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	background-color: #ff6a6a;
+	margin: 5px;
+}

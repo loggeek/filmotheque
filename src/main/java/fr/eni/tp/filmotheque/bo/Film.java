@@ -1,5 +1,9 @@
 package fr.eni.tp.filmotheque.bo;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
@@ -15,13 +19,28 @@ import java.util.List;
 public class Film implements Serializable
 {
 	private long id;
+
+	@NotBlank
+	@Size(max = 250)
 	private String titre;
+
+	@Min(1900)
 	private int annee;
+
+	@Min(1)
 	private int duree;
+
+	@Size(min = 20, max = 250)
 	private String synopsis;
+
+	@NotNull
 	private Participant realisateur;
+
 	private List<Participant> acteurs = new ArrayList<>();
+
+	@NotNull
 	private Genre genre;
+
 	private List<Avis> avis = new ArrayList<>();
 
 	public Film()
