@@ -2,29 +2,21 @@ package fr.eni.tp.filmotheque.controller.converter;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
 import fr.eni.tp.filmotheque.bo.Participant;
-import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
 @Component
 public class StringArrayToParticipantList implements Converter<String[], List<Participant>>
 {
-	private final FilmService filmService;
-
-	@Autowired
-	public StringArrayToParticipantList(FilmService filmService)
-	{
-		this.filmService = filmService;
-	}
+	@Autowired FilmService filmService;
 
 	@Override
-	public List<Participant> convert(@NonNull String[] from)
+	public List<Participant> convert(String[] from)
 	{
 		List<Participant> participants = new ArrayList<>();
 

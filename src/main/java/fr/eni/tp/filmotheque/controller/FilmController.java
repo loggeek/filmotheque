@@ -24,13 +24,7 @@ import java.util.Objects;
 @SessionAttributes({"s_genres", "s_membre"})
 public class FilmController
 {
-	private final FilmService filmService;
-
-	@Autowired
-	public FilmController(FilmService filmService)
-	{
-		this.filmService = filmService;
-	}
+	@Autowired FilmService filmService;
 
 	@ModelAttribute("s_genres")
 	public List<Genre> chargerGenres()
@@ -77,7 +71,7 @@ public class FilmController
 	}
 
 	@GetMapping("/{id}")
-	public String afficherUnFilm(@PathVariable long id, Model model)
+	public String afficherUnFilm(@PathVariable int id, Model model)
 	{
 		try {
 			Film film = filmService.consulterFilmParId(id);

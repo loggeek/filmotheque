@@ -1,39 +1,22 @@
 package fr.eni.tp.filmotheque.bo;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Generated;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 
 @Data
+@Builder
 @Component
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Avis implements Serializable
 {
-	private long id;
-	private int note;
-	private String commentaire;
-	private Membre membre;
-
-	public Avis()
-	{
-	}
-
-	public Avis(int note, String commentaire, Membre membre)
-	{
-		this.note = note;
-		this.commentaire = commentaire;
-		this.membre = membre;
-	}
-
-	public Avis(long id, int note, String commentaire, Membre membre)
-	{
-		this.id = id;
-		this.note = note;
-		this.commentaire = commentaire;
-		this.membre = membre;
-	}
+	@NotNull private int id;
+	@NotNull private int note;
+	@NotNull private String commentaire;
+	@NotNull private Membre membre;
 }

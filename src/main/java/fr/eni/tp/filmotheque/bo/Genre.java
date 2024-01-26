@@ -1,5 +1,6 @@
 package fr.eni.tp.filmotheque.bo;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -7,25 +8,13 @@ import java.io.Serializable;
 
 
 @Data
+@Builder
 @Component
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Genre implements Serializable
 {
-	private long id;
-	private String titre;
-
-	public Genre()
-	{
-	}
-
-	public Genre(String titre)
-	{
-		this.titre = titre;
-	}
-
-	public Genre(long id, String titre)
-	{
-		this.id = id;
-		this.titre = titre;
-	}
+	@NotNull private int id;
+	@NotNull private String titre;
 }

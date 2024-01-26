@@ -14,16 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes({"s_membre"})
 public class AvisController
 {
-	private final FilmService filmService;
-
-	@Autowired
-	public AvisController(FilmService filmService)
-	{
-		this.filmService = filmService;
-	}
+	@Autowired FilmService filmService;
 
 	@GetMapping("/{id}")
-	public String afficherUnAvis(@PathVariable long id, Model model)
+	public String afficherUnAvis(@PathVariable int id, Model model)
 	{
 		if (! model.containsAttribute("s_membre")) {
 			return "redirect:/films";
@@ -34,14 +28,18 @@ public class AvisController
 	}
 
 	@PostMapping("/{id}")
-	public String creerUnAvis(@PathVariable long id, @RequestParam int note, @RequestParam String commentaire, Model model)
+	public String creerUnAvis(@PathVariable int id, @RequestParam int note, @RequestParam String commentaire, Model model)
 	{
 		if (! model.containsAttribute("s_membre")) {
 			return "redirect:/films";
 		}
 
 		filmService.publierAvis(
-			new Avis(note, commentaire, (Membre) model.getAttribute("s_membre")),
+			Avis.builder()
+				.note(note)
+				.commentaire(commentaire)
+				.membre((Membre) model.getAttribute("s_membre"))
+				.build(),
 			id
 		);
 

@@ -9,7 +9,7 @@
 		<section class="center-section">
 			<h1 data-th-text="#{view-contexte.heading}"></h1>
 			<th-block data-th-unless="${s_membre}" data-th-each="membre : ${membres}">
-				<a data-th-href="'/ctx/login/' + ${membre.pseudo}" data-th-text="${membre.prenom} + ' ' + ${membre.nom} + (${membre.admin} ? ' [ADMIN]' : '')"></a>
+				<a data-th-href="'/ctx/login/' + ${membre.pseudo}" data-th-text="${membre.prenom} + ' ' + ${membre.nom} + (${membre.isAdmin} ? ' [ADMIN]' : '')"></a>
 			</th-block>
 			<a data-th-if="${s_membre}" href="/ctx/logout" data-th-text="#{view-contexte.deconnexion}"></a>
 		</section>

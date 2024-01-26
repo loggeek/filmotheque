@@ -1,28 +1,21 @@
 package fr.eni.tp.filmotheque.bo;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 
 @Data
+@Builder
 @Component
-@EqualsAndHashCode(callSuper = true)
-public class Participant extends Personne implements Serializable
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+public class Participant implements Serializable
 {
-	public Participant()
-	{
-	}
-
-	public Participant(String nom, String prenom)
-	{
-		super(nom, prenom);
-	}
-
-	public Participant(long id, String nom, String prenom)
-	{
-		super(id, nom, prenom);
-	}
+	@NotNull private int id;
+	@NotNull private String nom;
+	@NotNull private String prenom;
 }

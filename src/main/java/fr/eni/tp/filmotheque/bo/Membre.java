@@ -1,5 +1,6 @@
 package fr.eni.tp.filmotheque.bo;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -7,36 +8,18 @@ import java.io.Serializable;
 
 
 @Data
+@Builder
 @Component
-@EqualsAndHashCode(callSuper = true)
-public class Membre extends Personne implements Serializable
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+public class Membre implements Serializable
 {
-	private String pseudo;
-	@ToString.Exclude
-	private String motDePasse;
-	private boolean admin;
+	@NotNull private int id;
+	@NotNull private String nom;
+	@NotNull private String prenom;
 
-	public Membre()
-	{
-	}
-
-	public Membre(String nom, String prenom, String pseudo, boolean admin)
-	{
-		super(nom, prenom);
-		this.pseudo = pseudo;
-		this.admin = admin;
-	}
-
-	public Membre(long id, String nom, String prenom, String pseudo, boolean admin)
-	{
-		super(id, nom, prenom);
-		this.pseudo = pseudo;
-		this.admin = admin;
-	}
-
-	public Membre(String pseudo, boolean admin)
-	{
-		this.pseudo = pseudo;
-		this.admin = admin;
-	}
+	@NotNull private String pseudo;
+	@NotNull @ToString.Exclude private String motDePasse;
+	@NotNull private boolean isAdmin;
 }

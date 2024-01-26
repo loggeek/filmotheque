@@ -11,13 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class StringToParticipant implements Converter<String, Participant>
 {
-	private final FilmService filmService;
-
-	@Autowired
-	public StringToParticipant(FilmService filmService)
-	{
-		this.filmService = filmService;
-	}
+	@Autowired FilmService filmService;
 
 	@Override
 	public Participant convert(@NonNull String from)

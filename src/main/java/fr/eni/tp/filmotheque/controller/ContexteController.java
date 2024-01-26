@@ -16,13 +16,7 @@ import java.util.List;
 @SessionAttributes({"s_membre"})
 public class ContexteController
 {
-	ContexteService contexteService;
-
-	@Autowired
-	public ContexteController(ContexteService contexteService)
-	{
-		this.contexteService = contexteService;
-	}
+	@Autowired ContexteService contexteService;
 
 	@GetMapping
 	public String login(Model model)

@@ -12,16 +12,13 @@ import java.util.List;
 public interface FilmService
 {
 	List<Film> consulterFilms();
-	Film consulterFilmParId(long id);
+	Film consulterFilmParId(int id);
 	List<Genre> consulterGenres();
-	Genre consulterGenreParId(long id);
+	Genre consulterGenreParId(int id);
 	List<Participant> consulterParticipants();
-	Participant consulterParticipantParId(long id);
+	Participant consulterParticipantParId(int id);
 	void creerFilm(Film film);
-
-	String consulterTitreFilm(long id);
-
-	void publierAvis(Avis avis, long idFilm);
-
-	List<Avis> consulterAvis(long idFilm);
+	String consulterTitreFilm(int id);
+	void publierAvis(Avis avis, int idFilm);
+	List<Avis> consulterAvis(int idFilm);
 }
