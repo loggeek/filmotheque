@@ -10,11 +10,12 @@ import fr.eni.tp.filmotheque.dal.FilmDAO;
 import fr.eni.tp.filmotheque.dal.GenreDAO;
 import fr.eni.tp.filmotheque.dal.ParticipantDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+
+@Service
 public class FilmServiceImpl implements FilmService
 {
 	@Autowired AvisDAO avisDAO;

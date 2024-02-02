@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
-@Component
+@Repository
 public class FilmDAOImpl implements FilmDAO
 {
 	@Autowired FilmRowMapper rowMapper;
@@ -22,6 +24,8 @@ public class FilmDAOImpl implements FilmDAO
 	@Override
 	public void create(Film film)
 	{
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
 		String sql = "INSERT INTO film(realisateur, genre, titre, annee, duree, synopsis) " +
 				 "VALUES(:realisateur, :genre, :titre, :annee, :duree, :synopsis)";
 
@@ -34,7 +38,11 @@ public class FilmDAOImpl implements FilmDAO
 		namedParameters.addValue("duree", film.getDuree());
 		namedParameters.addValue("synopsis", film.getSynopsis());
 
-		namedjdbc.update(sql, namedParameters);
+		namedjdbc.update(sql, namedParameters, keyHolder);
+
+		if (keyHolder.getKey() != null) {
+			film.setId(keyHolder.getKey().intValue());
+		}
 	}
 
 	@Override

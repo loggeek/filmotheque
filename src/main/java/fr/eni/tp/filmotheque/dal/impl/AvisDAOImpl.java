@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
+
+@Repository
 public class AvisDAOImpl implements AvisDAO
 {
 	@Autowired AvisRowMapper rowMapper;
@@ -21,6 +24,8 @@ public class AvisDAOImpl implements AvisDAO
 	@Override
 	public void create(Avis avis, int film)
 	{
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
 		String sql = "INSERT INTO avis(membre, film, note, commentaire) " +
 			"VALUES(:membre, :film, :note, :commentaire)";
 
@@ -31,7 +36,11 @@ public class AvisDAOImpl implements AvisDAO
 		namedParameters.addValue("note", avis.getNote());
 		namedParameters.addValue("commentaire", avis.getCommentaire());
 
-		namedjdbc.update(sql, namedParameters);
+		namedjdbc.update(sql, namedParameters, keyHolder);
+
+		if (keyHolder.getKey() != null) {
+			avis.setId(keyHolder.getKey().intValue());
+		}
 	}
 
 	@Override
